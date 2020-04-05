@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btcCounter++;
+
+
+                // запуск второг окна при условии кратности
+                if (btcCounter % 5 == 0)
+                    secondActivity();
+
                 String newString = String.valueOf(btcCounter);
                 textView.setText(newString);
             }
@@ -55,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         // PRESSED
-                        return true;
+                        // return true;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
                     // case MotionEvent.ACTION_BUTTON_PRESS:
                     // case MotionEvent.ACTION_BUTTON_RELEASE:
                         // RELEASED
-                        return true;
+                        // return true;
                 }
                 return false;
             }
@@ -83,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    private void secondActivity(){
+        // запуск статичного метода для открытия второго активити
+        SecondActivity.start(this, btcCounter);
     }
 }
