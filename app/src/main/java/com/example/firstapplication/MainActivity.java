@@ -2,6 +2,7 @@ package com.example.firstapplication;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.TextView;
@@ -91,6 +92,21 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+
+    // логирование если приложение было свернуто
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("AppLog", "App paused");
+    }
+
+    // логирование когда вернулись к приложению
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("AppLog", "App resumed");
+    }
+    // таким же образом можно логировать onStop, onStart, onDestroy(хотя он врядли выполнится, лучше использовать ниже)
 
     // запускается при креше приложения, в отличии от обычных исключений
     // Thread.UncaughtExceptionHandler;
