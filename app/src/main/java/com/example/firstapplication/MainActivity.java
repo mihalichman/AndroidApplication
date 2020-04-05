@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+
+    // запускается при креше приложения, в отличии от обычных исключений
+    // Thread.UncaughtExceptionHandler;
+
     private void secondActivity(){
         // запуск статичного метода для открытия второго активити
         SecondActivity.start(this, btcCounter);
