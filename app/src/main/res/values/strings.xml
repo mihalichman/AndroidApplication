@@ -6,4 +6,5 @@
     <string name="todo">TODO</string>
     <string name="button">Button</string>
     <string name="secondActText">Start %d</string>
+    <string name="switchView">Switch</string>
 </resources>

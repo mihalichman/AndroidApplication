@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -27,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         textView.onSaveInstanceState();
         textView.setText(String.valueOf(btcCounter));
 
+        // изменение видимости (visible, invisible, gone)
+        // textView.setVisibility(View.VISIBLE);
+
         // TouchButton btcButton = new TouchButton(findViewById(R.id.button).getContext());
         Button btcButton = findViewById(R.id.button);
         btcButton.setOnClickListener(new View.OnClickListener() {
@@ -34,62 +36,40 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 btcCounter++;
 
-
                 // запуск второг окна при условии кратности
                 if (btcCounter % 5 == 0)
                     secondActivity();
+
+
+                if (btcCounter % 3 == 0)
+                    set();
 
                 String newString = String.valueOf(btcCounter);
                 textView.setText(newString);
             }
         });
-
-//        btcButton.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                btcCounter++;
-//                String newString = String.valueOf(btcCounter);
-//                textView.setText(newString);
-//            }
-//        });
-
-
-        btcButton.setOnTouchListener(new View.OnTouchListener() {
-
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        // PRESSED
-                        // return true;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                    // case MotionEvent.ACTION_BUTTON_PRESS:
-                    // case MotionEvent.ACTION_BUTTON_RELEASE:
-                        // RELEASED
-                        // return true;
-                }
-                return false;
-            }
-        });
+    }
 
 
 
-//        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-//        ViewPager viewPager = findViewById(R.id.view_pager);
-//        viewPager.setAdapter(sectionsPagerAdapter);
-//        TabLayout tabs = findViewById(R.id.tabs);
-//        tabs.setupWithViewPager(viewPager);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+    /** add element from code
+     * можно добавлять элементы не через xml а через код, может работать чуть быстрее
+     * */
+    private void set(){
+        RelativeLayout layout  = findViewById(R.id.relative);
+
+        TextView tx = new TextView(this);
+        tx.setText("from text");
+
+        LinearLayout.LayoutParams linearLayout = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        );
+
+        linearLayout.gravity = Gravity.CENTER_HORIZONTAL;
+        tx.setLayoutParams(linearLayout);
+
+        layout.addView(tx);
     }
 
 
